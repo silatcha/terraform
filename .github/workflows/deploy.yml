@@ -1,0 +1,44 @@
+name: Terraform Test
+
+
+on:
+  push:
+    branches:
+      - master
+      
+  pull_request:
+    branches:
+      - master
+
+  # Schedule the job to everyday to refresh dynamic first page
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+
+  rendering:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout from main
+    - name: Checkout current repository to Master branch
+      uses: actions/checkout@v3
+    # Setup Node version
+    - name: Setup NodeJs 16.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '16.x'
+    - name: Build with angular
+      run: npm run build
+    - name: Deploy to GitHub jar 🚀
+      uses: JamesIves/github-pages-deploy-action@v4.3.0
+      with:
+        branch: build
+        folder: target
+    - name: Commit and Push new README.md to the repository
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+ 
