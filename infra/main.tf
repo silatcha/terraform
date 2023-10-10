@@ -15,7 +15,7 @@ provider "docker" {
 resource "docker_image" "build" {
   name = "ubuntu:18.04"
   build {
-    context    = "../DevOps/docker"
+    context    = "../"
     dockerfile = "Dockerfile"
     #args       = { "PORT" = "81" } # Ajouter cette ligne pour passer un argument au Dockerfile
   }

@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "./script/deploy.sh",
+    "destroy": "./script/destroy.sh"
   },
   "private": true,
   "dependencies": {
